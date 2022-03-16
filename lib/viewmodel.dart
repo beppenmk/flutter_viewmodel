@@ -2,31 +2,23 @@ library viewmodel;
 
 import 'dart:async';
 
-import 'package:viewmodel/usecase.dart';
+import 'package:flutter/foundation.dart';
+import 'package:viewmodel/base/usecase.dart';
 
-import 'broadcast_stream_controller.dart';
-
+import 'base/broadcast_stream_controller.dart';
 
 class ViewModel {
   List<StreamController> controllers = [];
 
-  void executeFuture<T>(Future<T>? future,
+  void executeFuture<T>(Future<T> future,
       {BroadcastStream<T>? broadcastStreamController,
       StreamController<T>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
-    if (future == null) {
-      print("Future and usecase must be not null");
-      return;
-    }
-    if ((broadcastStreamController == null && controller == null) ||
-        (broadcastStreamController != null && controller != null)) {
-      print(
-          "One (and only one) between broadcastStreamController and controller must be not null");
-      return;
-    }
+    assert((broadcastStreamController == null && controller != null) ||
+        (broadcastStreamController != null && controller == null));
 
     //ADD ONE OF THE TWO CONTROLLERS
-    var _controller;
+    dynamic _controller;
     if (broadcastStreamController != null) {
       _controller = broadcastStreamController.controller;
     } else if (controller != null) {
@@ -45,19 +37,12 @@ class ViewModel {
       {BroadcastStream<O>? broadcastStreamController,
       StreamController<O>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
-    if (params == null) {
-      print("Usecase and params must be not null");
-      return;
-    }
-    if ((broadcastStreamController == null && controller == null) ||
-        (broadcastStreamController != null && controller != null)) {
-      print(
-          "One (and only one) between broadcastStreamController and controller must be not null");
-      return;
-    }
+    assert(params != null);
+    assert((broadcastStreamController == null && controller != null) ||
+        (broadcastStreamController != null && controller == null));
 
     //ADD ONE OF THE TWO CONTROLLERS
-    var _controller;
+    dynamic _controller;
     if (broadcastStreamController != null) {
       _controller = broadcastStreamController.controller;
     } else if (controller != null) {
@@ -75,6 +60,8 @@ class ViewModel {
 
   void dispose() {
     controllers.forEach((controller) => controller.close());
-    print("Disposed ${controllers.length} controllers");
+    if (kDebugMode) {
+      print("Disposed ${controllers.length} controllers");
+    }
   }
 }
