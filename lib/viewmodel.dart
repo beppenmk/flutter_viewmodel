@@ -11,16 +11,16 @@ class ViewModel {
   List<StreamController> controllers = [];
 
   void executeFuture<T>(Future<T> future,
-      {BroadcastStream<T>? broadcastStreamController,
+      {BroadcastStream<T>? broadcastStream,
       StreamController<T>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
-    assert((broadcastStreamController == null && controller != null) ||
-        (broadcastStreamController != null && controller == null));
+    assert((broadcastStream == null && controller != null) ||
+        (broadcastStream != null && controller == null));
 
     //ADD ONE OF THE TWO CONTROLLERS
     dynamic _controller;
-    if (broadcastStreamController != null) {
-      _controller = broadcastStreamController.controller;
+    if (broadcastStream != null) {
+      _controller = broadcastStream.controller;
     } else if (controller != null) {
       _controller = controller;
     }
@@ -34,17 +34,17 @@ class ViewModel {
   }
 
   void executeUseCase<I, O>(UseCase<I, O> useCase, I params,
-      {BroadcastStream<O>? broadcastStreamController,
+      {BroadcastStream<O>? broadcastStream,
       StreamController<O>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
     assert(params != null);
-    assert((broadcastStreamController == null && controller != null) ||
-        (broadcastStreamController != null && controller == null));
+    assert((broadcastStream == null && controller != null) ||
+        (broadcastStream != null && controller == null));
 
     //ADD ONE OF THE TWO CONTROLLERS
     dynamic _controller;
-    if (broadcastStreamController != null) {
-      _controller = broadcastStreamController.controller;
+    if (broadcastStream != null) {
+      _controller = broadcastStream.controller;
     } else if (controller != null) {
       _controller = controller;
     }
