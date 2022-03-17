@@ -27,17 +27,16 @@ class SnapshotBuilder<T> extends StatelessWidget {
     return StreamBuilder<T>(
       stream: broadcast.stream,
       initialData: initialData,
-      builder: (context, snapshot) =>
-          _Snapshot<T>(
-            snapshot,
-            onData: child,
-            onError: onError,
-            onLoading: onLoading,
-            isAnimated: isAnimated,
-            animationDuration: (animationDuration != null)
-                ? animationDuration!
-                : _animationDuration,
-          ),
+      builder: (context, snapshot) => _Snapshot<T>(
+        snapshot,
+        onData: child,
+        onError: onError,
+        onLoading: onLoading,
+        isAnimated: isAnimated,
+        animationDuration: (animationDuration != null)
+            ? animationDuration!
+            : _animationDuration,
+      ),
     );
   }
 }
@@ -50,7 +49,8 @@ class _Snapshot<T> extends StatefulWidget {
   final bool isAnimated;
   final Duration animationDuration;
 
-  const _Snapshot(this.snapshot, {
+  const _Snapshot(
+    this.snapshot, {
     Key? key,
     required this.onData,
     this.onLoading,
@@ -86,12 +86,28 @@ class _SnapshotState<T> extends State<_Snapshot<T>> {
     super.didUpdateWidget(oldWidget);
   }
 
+
+  Widget _getLoader(){
+    if (widget.onLoading != null) {
+      return widget.onLoading!;
+    } else {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+
+
     return ValueListenableBuilder<AsyncSnapshot<T>>(
       valueListenable: _state!,
       builder: (BuildContext context, AsyncSnapshot<T> snapshot, _) {
-
         if (snapshot.hasError) {
           if (widget.onError != null) {
             return widget.onError!(snapshot.error!);
@@ -100,33 +116,25 @@ class _SnapshotState<T> extends State<_Snapshot<T>> {
             color: Colors.transparent,
           );
         }
+
         if (widget.isAnimated) {
           return AnimatedSwitcher(
             duration: widget.animationDuration,
             child: (snapshot.hasData && widget.onData != null)
                 ? Container(
-              key: _loaded,
-              child: widget.onData!(snapshot.data!),
-            )
+                    key: _loaded,
+                    child: widget.onData!(snapshot.data!),
+                  )
                 : Container(
-              key: _load,
-              child: widget.onLoading ??
-                  const Center(
-                    child: CircularProgressIndicator.adaptive(),
+                    key: _load,
+                    child:_getLoader(),
                   ),
-            ),
           );
         } else {
           if (snapshot.hasData && widget.onData != null) {
             return widget.onData!(snapshot.data!);
           } else {
-            if (widget.onLoading != null) {
-              return widget.onLoading!;
-            } else {
-              return const  Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
+            return _getLoader();
           }
         }
       },

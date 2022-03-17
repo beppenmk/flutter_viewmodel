@@ -59,7 +59,9 @@ class ViewModel {
   }
 
   void dispose() {
-    controllers.forEach((controller) => controller.close());
+    for (var controller in controllers) {
+      controller.close();
+    }
     if (kDebugMode) {
       print("Disposed ${controllers.length} controllers");
     }
