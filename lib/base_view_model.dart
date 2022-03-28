@@ -7,7 +7,10 @@ import 'package:viewmodel/base/usecase.dart';
 import 'base/broadcast_stream_controller.dart';
 
 
-class ViewModel {
+class BaseViewModel {
+
+
+
   List<StreamController> controllers = [];
 
   void executeFuture<T>(Future<T> future,
