@@ -1,20 +1,28 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:viewmodel/vm.dart';
+import 'viewmodel_test.mocks.dart';
 
-import 'mock/usecase_mock.dart';
+@GenerateMocks([
+  UseCase,
+], customMocks: [])
+
 
 void main() {
-  test('adds one to input values', () {
-    //final calculator = Calculator();
-    //expect(calculator.addOne(2), 3);
-    //expect(calculator.addOne(-7), -6);
-    //expect(calculator.addOne(0), 1);
+
+  final useCase = MockUseCase();
+  final f = Future.value();
+
+  setUp(() {
+    when(useCase.execute(true)).thenAnswer((_) async => true);
+    when(useCase.execute(false)).thenAnswer((_) async => false);
   });
 
-  group('BaseViewModel', () {
 
+  group('BaseViewModel', () {
     test('init', () {
       final BaseViewModel baseViewModel = BaseViewModel();
       expect(baseViewModel.controllers.length, 0);
@@ -22,23 +30,19 @@ void main() {
 
     test('execute future', () async {
       final BaseViewModel baseViewModel = BaseViewModel();
-      final f = Future.value();
       final broadcastStream = BroadcastStream();
       final controller = StreamController();
-
       expect(() {
         baseViewModel.executeFuture(f);
         assert(false);
       }, throwsAssertionError);
       expect(baseViewModel.controllers.length, 0);
-
       expect(() {
         baseViewModel.executeFuture(f,
             broadcastStream: broadcastStream, controller: controller);
         assert(false);
       }, throwsAssertionError);
       expect(baseViewModel.controllers.length, 0);
-
 
       baseViewModel.executeFuture(f, controller: controller);
       expect(baseViewModel.controllers.length, 1);
@@ -55,7 +59,7 @@ void main() {
       final BaseViewModel baseViewModel = BaseViewModel();
       final broadcastStream = BroadcastStream();
       final controller = StreamController();
-      final  useCase = FakeUseCase();
+
 
       expect(() {
         baseViewModel.executeUseCase(useCase, NoParams());
@@ -68,44 +72,40 @@ void main() {
         assert(false);
       }, throwsAssertionError);
       expect(baseViewModel.controllers.length, 0);
-
     });
 
     test('execute UseCase  controller', () async {
       final BaseViewModel baseViewModel = BaseViewModel();
-      final controller = StreamController();
-      final  useCase = FakeUseCase();
 
-      baseViewModel.executeUseCase(useCase, NoParams(),  controller: controller ) ;
+      final controller = StreamController();
+      baseViewModel.executeUseCase(useCase, true, controller: controller);
       expect(baseViewModel.controllers.length, 1);
 
       await controller.stream.listen((event) {
         expect(event, true);
       });
 
+
       await Future.delayed(Duration(milliseconds: 500));
       baseViewModel.dispose();
       expect(baseViewModel.controllers.length, 0);
-
     });
 
     test('execute UseCase  broadcastStream', () async {
       final BaseViewModel baseViewModel = BaseViewModel();
       final broadcastStream = BroadcastStream();
-      final  useCase = FakeUseCase();
 
-      baseViewModel.executeUseCase(useCase, NoParams(),  broadcastStream: broadcastStream ) ;
+      baseViewModel.executeUseCase(useCase,false,
+          broadcastStream: broadcastStream);
       expect(baseViewModel.controllers.length, 1);
 
       await broadcastStream.stream?.listen((event) {
-        expect(event, true);
+        expect(event, false);
       });
 
       await Future.delayed(Duration(milliseconds: 500));
       baseViewModel.dispose();
       expect(baseViewModel.controllers.length, 0);
-
     });
-
   });
 }
