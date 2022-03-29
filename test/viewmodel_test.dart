@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viewmodel/base_view_model.dart';
+import 'package:viewmodel/vm.dart';
 
 
 

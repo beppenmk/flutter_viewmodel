@@ -1,21 +1,17 @@
-library viewmodel;
 
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:viewmodel/base/usecase.dart';
-import 'base/broadcast_stream_controller.dart';
-
+import 'package:viewmodel/base/broadcast_stream_controller.dart';
+import 'package:viewmodel/vm.dart';
 
 class BaseViewModel {
-
-
 
   List<StreamController> controllers = [];
 
   void executeFuture<T>(Future<T> future,
       {BroadcastStream<T>? broadcastStream,
-      StreamController<T>? controller}) {
+        StreamController<T>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
     assert((broadcastStream == null && controller != null) ||
         (broadcastStream != null && controller == null));
@@ -38,7 +34,7 @@ class BaseViewModel {
 
   void executeUseCase<I, O>(UseCase<I, O> useCase, I params,
       {BroadcastStream<O>? broadcastStream,
-      StreamController<O>? controller}) {
+        StreamController<O>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
     assert(params != null);
     assert((broadcastStream == null && controller != null) ||
