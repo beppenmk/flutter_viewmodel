@@ -64,5 +64,6 @@ class BaseViewModel {
     if (kDebugMode) {
       print("Disposed ${controllers.length} controllers");
     }
+    controllers.clear();
   }
 }
