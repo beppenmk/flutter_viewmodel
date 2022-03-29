@@ -1,8 +1,7 @@
 # viewmodel
-Basic view model plugion for flutter
+Basic view model plugin for flutter
 
 
 TODO
-- baseview 
-- test 
+
 - doc
