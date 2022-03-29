@@ -6,7 +6,7 @@ import 'package:viewmodel/base/broadcast_stream_controller.dart';
 class SnapshotBuilder<T> extends StatelessWidget {
   final BroadcastStream<T> broadcast;
   final T? initialData;
-  final Widget Function(T) child;
+  final Widget Function(T) onData;
   final Widget Function(dynamic)? onError;
   final Widget? onLoading;
   final bool isAnimated;
@@ -16,7 +16,7 @@ class SnapshotBuilder<T> extends StatelessWidget {
   const SnapshotBuilder({
     Key? key,
     required this.broadcast,
-    required this.child,
+    required this.onData,
     this.onLoading,
     this.onError,
     this.initialData,
@@ -31,7 +31,7 @@ class SnapshotBuilder<T> extends StatelessWidget {
       initialData: initialData,
       builder: (context, snapshot) => _Snapshot<T>(
         snapshot,
-        onData: child,
+        onData: onData,
         onError: onError,
         onLoading: onLoading,
         isAnimated: isAnimated,
