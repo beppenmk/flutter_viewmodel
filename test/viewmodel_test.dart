@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_vm/vm.dart';
+
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viewmodel/vm.dart';
+
 import 'viewmodel_test.mocks.dart';
 
 @GenerateMocks([

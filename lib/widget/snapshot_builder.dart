@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:viewmodel/base/broadcast_stream_controller.dart';
+import 'package:flutter_vm/vm.dart';
 
 class SnapshotBuilder<T> extends StatelessWidget {
   final BroadcastStream<T> broadcast;

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:viewmodel/base/base_view_model.dart';
+import 'package:flutter_vm/vm.dart';
 
 mixin ViewModel<Page extends StatefulWidget, T> on State<Page> {
   late T vm;

@@ -2,8 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:viewmodel/base/broadcast_stream_controller.dart';
-import 'package:viewmodel/vm.dart';
+import 'package:flutter_vm/vm.dart';
 
 class BaseViewModel {
 
