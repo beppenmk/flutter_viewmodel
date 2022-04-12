@@ -9,7 +9,7 @@ class BroadcastStream<T> {
     stream = controller!.stream;
   }
 
-  void dispose(){
+  void dispose() {
     controller?.close();
   }
 }

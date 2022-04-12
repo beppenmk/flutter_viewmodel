@@ -1,16 +1,13 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_vm/vm.dart';
 
 class BaseViewModel {
-
   List<StreamController> controllers = [];
 
   void executeFuture<T>(Future<T> future,
-      {BroadcastStream<T>? broadcastStream,
-        StreamController<T>? controller}) {
+      {BroadcastStream<T>? broadcastStream, StreamController<T>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
     assert((broadcastStream == null && controller != null) ||
         (broadcastStream != null && controller == null));
@@ -32,8 +29,7 @@ class BaseViewModel {
   }
 
   void executeUseCase<I, O>(UseCase<I, O> useCase, I params,
-      {BroadcastStream<O>? broadcastStream,
-        StreamController<O>? controller}) {
+      {BroadcastStream<O>? broadcastStream, StreamController<O>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
     assert(params != null);
     assert((broadcastStream == null && controller != null) ||
