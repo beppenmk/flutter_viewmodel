@@ -1,11 +1,11 @@
 # ViewModel Library
 
 
-A Flutter ViewModel implementation. Use Mixin for use in Statefull Widget or sample contructor for use in Stateless.
+A Flutter ViewModel implementation. Use Mixin for use in Stateful Widget or sample constructor for use in Stateless.
 
 In your **CustomViewModel** you can use **UseCase** or custom **Future**.
 
-In your Widget you can listen your stream or use **SnapshotBuilder** in your build method.
+You can listen to your stream in your Widget or use **SnapshotBuilder** in your build method.
 
 You can see a full example at this repo.
 [Flutter ViewModel Example](https://github.com/beppenmk/flutter_viewmodel_example)  
@@ -54,7 +54,7 @@ class LoginParams {
 }
 ```
 
-## Init in StateFull Widget
+## Init in StateFul Widget
 ```
 class _LoginMixinWidgetState extends State<LoginMixinWidget>
     with ViewModel<LoginMixinWidget, AuthViewModel> { //use mixin
@@ -116,7 +116,7 @@ class _LoginMixinWidgetState extends State<LoginMixinWidget>
   }
   
 ```
-## Listen Stream 
+## Listen to a Stream 
 ```
   int _counter = 0;
   
