@@ -116,7 +116,7 @@ class _LoginMixinWidgetState extends State<LoginMixinWidget>
   }
   
 ```
-## Listen Strem 
+## Listen Stream 
 ```
   int _counter = 0;
   
