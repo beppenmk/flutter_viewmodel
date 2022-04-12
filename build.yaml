@@ -1,0 +1,10 @@
+targets:
+  $default:
+    sources:
+      include:
+        - lib/**
+        - test/**.dart
+    builders:
+      mockito|mockBuilder:
+        generate_for:
+          - test/**.dart
