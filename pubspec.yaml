@@ -1,5 +1,5 @@
 name: flutter_vm
-description: A Flutter implementation of ViewModel.
+description: A Flutter ViewModel implementation. Use Mixin for use in Statefull Widget or sample contructor for use in Stateless. This lib include UseCase.
 version: 0.0.1
 homepage: https://github.com/beppenmk/flutter_viewmodel
 
