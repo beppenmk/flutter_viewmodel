@@ -1,4 +1,3 @@
-
 import 'package:flutter_vm/base/usecase.dart';
 
 import '../repository/user_repository.dart';

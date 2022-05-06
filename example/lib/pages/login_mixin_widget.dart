@@ -11,7 +11,6 @@ class LoginMixinWidget extends StatefulWidget {
 
 class _LoginMixinWidgetState extends State<LoginMixinWidget>
     with ViewModel<LoginMixinWidget, AuthViewModel> {
-
   @override
   AuthViewModel getViewModel() => AuthViewModel();
 

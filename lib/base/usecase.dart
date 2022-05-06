@@ -1,9 +1,5 @@
-
-
-abstract class UseCase<I,O> {
-
+abstract class UseCase<I, O> {
   Future<O> execute(I params);
-
 }
 
-class NoParams { }
+class NoParams {}

@@ -6,8 +6,6 @@ import 'pages/future_increment_widget.dart';
 import 'pages/login_mixin_widget.dart';
 import 'pages/login_widget.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -65,7 +63,8 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CountdownWidget()),
+                    MaterialPageRoute(
+                        builder: (context) => const CountdownWidget()),
                   );
                 },
                 child: const Text('Countdown'),
@@ -74,7 +73,8 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginWidget()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginWidget()),
                   );
                 },
                 child: const Text('Login UseCase'),
@@ -83,7 +83,8 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginMixinWidget()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginMixinWidget()),
                   );
                 },
                 child: const Text('Login With Mixin ViewModel'),

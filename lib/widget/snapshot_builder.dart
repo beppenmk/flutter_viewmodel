@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_vm/vm.dart';
 
@@ -88,8 +86,7 @@ class _SnapshotState<T> extends State<_Snapshot<T>> {
     super.didUpdateWidget(oldWidget);
   }
 
-
-  Widget _getLoader(){
+  Widget _getLoader() {
     if (widget.onLoading != null) {
       return widget.onLoading!;
     } else {
@@ -99,14 +96,8 @@ class _SnapshotState<T> extends State<_Snapshot<T>> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
-
-
-
     return ValueListenableBuilder<AsyncSnapshot<T>>(
       valueListenable: _state!,
       builder: (BuildContext context, AsyncSnapshot<T> snapshot, _) {
@@ -129,7 +120,7 @@ class _SnapshotState<T> extends State<_Snapshot<T>> {
                   )
                 : Container(
                     key: _load,
-                    child:_getLoader(),
+                    child: _getLoader(),
                   ),
           );
         } else {

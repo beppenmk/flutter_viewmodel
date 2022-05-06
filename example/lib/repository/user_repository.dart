@@ -1,4 +1,3 @@
-
 class UserRepository {
   //SharedPreferences? _prefs;
   final String USER = "USER";
@@ -9,8 +8,8 @@ class UserRepository {
   }
 */
   Future<bool> getIfUserIsLogged() async {
-   // final prefs = await _getPref();
-   // String? _token = prefs.getString(USER);
+    // final prefs = await _getPref();
+    // String? _token = prefs.getString(USER);
     return Future.value(true);
   }
 

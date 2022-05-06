@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_vm/vm.dart';
+
 class TimerViewModel extends BaseViewModel {
   int number = 0;
   int _number = 0;
