@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_vm/vm.dart';
 
+/// this is the base viewmodel
 class BaseViewModel {
   List<StreamController> controllers = [];
 
+  ///
+  /// this method execute future and add result in your controller
   void executeFuture<T>(Future<T> future,
       {BroadcastStream<T>? broadcastStream, StreamController<T>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
@@ -28,6 +31,8 @@ class BaseViewModel {
         .catchError((error) => _controller.addError(error));
   }
 
+  ///
+  /// this method execute future and add result in your controller
   void executeUseCase<I, O>(UseCase<I, O> useCase, I params,
       {BroadcastStream<O>? broadcastStream, StreamController<O>? controller}) {
     //CHECK INPUT (ONE SOURCE AND ONE DESTINATION)
@@ -52,6 +57,10 @@ class BaseViewModel {
         .catchError((error) => _controller.addError(error));
   }
 
+  /// This is a dispose method.
+  ///
+  /// Is called automatically if you use viewmodel with mixin, alternatively you can call manually
+  ///
   void dispose() {
     for (var controller in controllers) {
       controller.close();

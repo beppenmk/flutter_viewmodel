@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vm/vm.dart';
 
+///
+///This widget helps you to use ViewModel data in your UI
+///You can pass widget to execute when receiving data or error or when loading.
+///You can set if show animation when state changes and set the duration
+///
+
 class SnapshotBuilder<T> extends StatelessWidget {
   final BroadcastStream<T> broadcast;
   final T? initialData;

@@ -1,7 +1,6 @@
-## 0.0.1
+## 0.0.1+2
+* improve comment 
+* flutter format 
 
-* basic viewmodel class
-* basic useCase
-* SnapshotBuilder
-* unit test
+
 
